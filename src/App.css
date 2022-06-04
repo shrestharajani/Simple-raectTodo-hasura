@@ -1,0 +1,229 @@
+/* body {
+  background-color: lightgrey;
+}
+
+header {
+  text-align: center;
+  font-size: 40px;
+  padding: 10px;
+  height: 8vh;
+  font-weight: bold;
+  color: white;
+  background-color: purple;
+}
+.add-button{
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-body {
+  box-shadow: 5px 3px 10px 2px grey;
+  height: 70vh;
+  width: 40%;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.form input {
+  border-radius: 10px 10px 0 0;
+  border: 0;
+  width: 77%;
+  height: 4vh;
+  padding: 13px 5px 13px 10px;
+}
+
+input:focus {
+  border: 0;
+  outline: 0;
+}
+
+.form {
+  text-align: center;
+  border-bottom: 2px solid rgb(167, 165, 165, 0.4);
+}
+
+.form button{
+  padding: 10px;
+  border-radius: 7px;
+  background-color: skyblue;
+  border-color: skyblue;
+}
+
+.details {
+  text-align: center;
+  border-top: 2px solid rgb(167, 165, 165, 0.4);
+  top: 30rem;
+  position: sticky;
+}
+
+.item-data{
+  width: 30vw;
+ }
+
+.edit{
+  padding-right: 10px;
+}
+
+.items{
+  display: flex;
+  padding: 15px 0 0 20px;
+}
+
+.items-item{
+  padding-left: 10px;
+}
+
+.marked{
+  text-decoration: line-through;
+  color: grey;
+}
+
+.details button{
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.all-button{
+ margin-right: 10px;
+}
+
+.complete-button{
+  margin-right: 10px;
+  background-color: green;
+  border-color: green;
+  color: white;
+}
+
+.non-complete-button{
+  background-color: red;
+  border-color: red;
+  color: white;
+}
+
+.pagination-div{
+  position: sticky;
+  top: 28rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  list-style: none;
+}
+
+.pagination-div a{
+  border: 1px solid purple;
+  border-radius: 50%;
+  padding: 6px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.active-button a,.pagination-div a:hover{
+  background-color: purple;
+  color: white;
+}
+
+.previous-button a,.next-button a{
+  border: 1px solid purple;
+  border-radius: 5px ;
+  padding: 10px;
+  margin: 3px;
+}
+
+.disabled-button a{
+  opacity: 0.3;
+}
+
+.disabled-button a:hover{
+  background-color: transparent;
+  color: black;
+  cursor: default;
+}
+
+.break-label a{
+  border: none;
+}
+
+.break-label a:hover{
+  background-color: transparent;
+  color: black;
+  cursor: default;
+} */
+
+.first-component{
+  height: 50vh;
+  padding: 12px;
+  width: 97%;
+  background-color: darkblue;
+}
+
+.first-component .first__div{
+  height: 50%;
+  width: 100%;
+  background-color: red;
+}
+
+.first-component--component{
+  display: flex;
+  justify-content: space-between;
+  height: 50%;
+  margin-top: 10px;
+  background-color: green;
+}
+
+.first-component--component .second__div{
+  height: 100%;
+  width: 50%;
+  background-color: yellow;
+}
+
+.first-component--component .third__div{
+  height: 100%;
+  width: 50%;
+  background-color: orange;
+}
+
+.second-component{
+  padding: 12px;
+  width: 97%;
+  margin-top: 20px;
+  height: 50vh;
+  background-color: blue;
+  display: flex;
+}
+
+
+.second-component--first__part{
+  height: 100%;
+  width: 50%;
+}
+.second-component--first__part .first__div{
+  height: 70%;
+  background-color: brown;
+}
+
+.second-component--first__part .second__div{
+  height: 30%;
+  background-color:blueviolet;
+}
+
+.second-component--second__part{
+  height: 100%;
+  width: 50%;
+}
+
+.second-component--second__part .third__div{
+  height: 30%;
+  background-color: chartreuse;
+}
+
+.second-component--second__part .last__div{
+  height: 70%;
+  background-color:crimson;
+}
