@@ -1,0 +1,72 @@
+.first-component{
+    height: 50vh;
+    padding: 12px;
+    width: 97%;
+    background-color: darkblue;
+  }
+  
+  .first-component .first__div{
+    height: 50%;
+    width: 100%;
+    background-color: red;
+  }
+  
+  .first-component--component{
+    display: flex;
+    justify-content: space-between;
+    height: 50%;
+    margin-top: 10px;
+    background-color: green;
+  }
+  
+  .first-component--component .second__div{
+    height: 100%;
+    width: 50%;
+    background-color: yellow;
+  }
+  
+  .first-component--component .third__div{
+    height: 100%;
+    width: 50%;
+    background-color: orange;
+  }
+  
+  .second-component{
+    padding: 12px;
+    width: 97%;
+    margin-top: 20px;
+    height: 50vh;
+    background-color: blue;
+    display: flex;
+  }
+  
+  
+  .second-component--first__part{
+    height: 100%;
+    width: 50%;
+  }
+  .second-component--first__part .first__div{
+    height: 70%;
+    background-color: brown;
+  }
+  
+  .second-component--first__part .second__div{
+    height: 30%;
+    background-color:blueviolet;
+  }
+  
+  .second-component--second__part{
+    height: 100%;
+    width: 50%;
+  }
+  
+  .second-component--second__part .third__div{
+    height: 30%;
+    background-color: chartreuse;
+  }
+  
+  .second-component--second__part .last__div{
+    height: 70%;
+    background-color:crimson;
+  }
+  
