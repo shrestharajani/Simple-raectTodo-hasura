@@ -2,7 +2,7 @@ import './App.css';
 import './components/FlexBox/Flexbox.css';
 import FlexBox from './components/FlexBox/FlexBox'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { TodoFrontPage } from './components/TodoFrontPage';
+import { TodoFrontPage } from './components/Todo/TodoFrontPage';
 import { Navbar } from './components/Navbar';
 
 function App() {
