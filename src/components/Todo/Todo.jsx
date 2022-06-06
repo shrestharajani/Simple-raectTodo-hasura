@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 
-export const Todo = ({ item, id, checkItem, editItem, deleteItem }) => {
+export const Todo = ({ items, id, checkItem, editItem, deleteItem, completed }) => {
     const [checkTodo, setCheckTodo] = useState(false)
     useEffect(() => {
-        setCheckTodo(item.completeValue)
-    }, [item])
+        setCheckTodo(completed)
+    }, [completed])
 
     return (
         <div className='items'>
-            <input type='checkbox' checked={checkTodo} onChange={() => { checkItem(id) }} />
-            <div className='item-data'>{item.completeValue ?
-                <span className='items-item marked'>{item.items}</span> :
-                <span className='items-item'>{item.items}</span>}</div>
+            <input type='checkbox' checked={checkTodo} onChange={() => { checkItem(id, completed) }} />
+            <div className='item-data'>{completed ?
+                <span className='items-item marked'>{items}</span> :
+                <span className='items-item'>{items}</span>}</div>
 
             <div className="edit" >
                 <i className='fa fa-edit' onClick={() => { editItem(id) }} style={{ cursor: 'pointer' }} />

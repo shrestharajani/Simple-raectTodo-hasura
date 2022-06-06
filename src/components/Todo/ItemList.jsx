@@ -1,49 +1,81 @@
 import React, { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { Todo } from './Todo'
+import { DELETE_ITEM, GET_ITEMS, TOGGLE_COMPLETE } from '../graphql/graphqlOperations';
+import { useMutation, useQuery } from '@apollo/client';
+import { toast } from 'react-toastify';
+import Details from './Filter';
 
-export default function ItemList({ value,
-    setAddValue,
-    setValue,
-    toggleAddEdit,
-    setEditId
-}) {
+export default function ItemList(
+    {
+        setValue,
+        toggleAddEdit,
+        setEditId
+    }) {
+    const { loading, error, data } = useQuery(GET_ITEMS);
+    const [deletedItem] = useMutation(DELETE_ITEM)
+    const [competedItem] = useMutation(TOGGLE_COMPLETE)
     const [pageNumber, setPageNumber] = useState(0);
     const itemPerPage = 5
-    const pageCount = Math.ceil(value.length / itemPerPage)
+    // const pageCount = Math.ceil(data.todos.length / itemPerPage)
     const currentVisitedItems = pageNumber * itemPerPage
 
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
     const deleteItem = (id) => {
-        const deletedItem = value.filter((item) => item.id !== id)
-        setAddValue(deletedItem)
+        deletedItem({
+            variables: { id: id },
+            update: (cache) => {
+                const existingItems = cache.readQuery({
+                    query: GET_ITEMS
+                })
+                const newItem = existingItems.todos.filter(item => item.id !== id)
+                cache.writeQuery({
+                    query: GET_ITEMS,
+                    data: { todos: newItem }
+                })
+            }
+        })
+        toast.success("Item deleted successfully", {
+            icon: '😄'
+        });
     }
 
     const editItem = (id) => {
-        const findItem = value.find((item) => item.id === id)
+        const findItem = data.todos.find((item) => item.id === id)
         setValue(findItem.items)
         toggleAddEdit(false)
         setEditId(id)
     }
 
-    const checkItem = (id) => {
-        setAddValue(
-            value.map(val => {
-                if (val.id === id) {
-                    return { ...val, completeValue: !val.completeValue }
-                }
-                return val
-            })
-        )
+    const checkItem = (id, completed) => {
+        competedItem({
+            variables: { id: id, completed: !completed },
+            update: (cache) => {
+                const existingItem = cache.readQuery({
+                    query: GET_ITEMS
+                })
+                const newItem = existingItem.todos.map(item =>
+                    item.id === id ? { ...item, completed: !completed } : item
+                )
+                cache.writeQuery({
+                    query: GET_ITEMS,
+                    data: { todos: newItem }
+                })
+            }
+        })
     }
 
     const handleChange = (e) => {
         setPageNumber(e.selected)
     }
 
-    const displayItem = value.slice(currentVisitedItems, currentVisitedItems + itemPerPage).map((item, index) => (
+    const displayItem = data.todos.slice(currentVisitedItems, currentVisitedItems + itemPerPage).map((item, index) => (
         <Todo key={index}
-            item={item}
+            items={item.items}
             id={item.id}
+            completed={item.completed}
             checkItem={checkItem}
             editItem={editItem}
             deleteItem={deleteItem} />
@@ -51,12 +83,13 @@ export default function ItemList({ value,
 
     return (
         <>
-            {value.length === 0 ?
+            {data.todos.length === 0 ?
                 <div style={{ textAlign: 'center', paddingTop: '10px' }}> No todos yet!!</div> :
                 displayItem
             }
+            <Details item={data.todos} />
             <ReactPaginate
-                pageCount={pageCount}
+                // pageCount={pageCount}
                 onPageChange={handleChange}
                 containerClassName='pagination-div'
                 previousClassName='previous-button'
