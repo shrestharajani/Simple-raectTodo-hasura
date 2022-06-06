@@ -14,9 +14,9 @@ export const Todo = ({ items, id, checkItem, editItem, deleteItem, completed }) 
                 <span className='items-item'>{items}</span>}</div>
 
             <div className="edit">
-                <button disabled={completed} style={{ border: 'inherit' }}><i className='fa fa-edit'
-                    onClick={() => { editItem(id) }} s
-                    tyle={{ cursor: 'pointer' }} /></button>
+                <button disabled={completed} style={{ border: 'inherit', background: 'transparent' }}><i className='fa fa-edit'
+                    onClick={() => { editItem(id) }}
+                    style={{ cursor: 'pointer' }} /></button>
             </div>
 
             <div className="delete">
