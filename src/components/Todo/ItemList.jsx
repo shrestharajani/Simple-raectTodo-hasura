@@ -15,13 +15,14 @@ export default function ItemList(
     const { loading, error, data } = useQuery(GET_ITEMS);
     const [deletedItem] = useMutation(DELETE_ITEM)
     const [competedItem] = useMutation(TOGGLE_COMPLETE)
+    const [filter, setFilter] = useState('all')
     const [pageNumber, setPageNumber] = useState(0);
-    const itemPerPage = 5
-    // const pageCount = Math.ceil(data.todos.length / itemPerPage)
-    const currentVisitedItems = pageNumber * itemPerPage
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
+    const itemPerPage = 5
+    const pageCount = Math.ceil(data.todos.length / itemPerPage)
+    const currentVisitedItems = pageNumber * itemPerPage
 
     const deleteItem = (id) => {
         deletedItem({
@@ -71,15 +72,21 @@ export default function ItemList(
         setPageNumber(e.selected)
     }
 
-    const displayItem = data.todos.slice(currentVisitedItems, currentVisitedItems + itemPerPage).map((item, index) => (
-        <Todo key={index}
-            items={item.items}
-            id={item.id}
-            completed={item.completed}
-            checkItem={checkItem}
-            editItem={editItem}
-            deleteItem={deleteItem} />
-    ))
+    let value;
+    filter === 'completed' ? value = data.todos.filter(item => item.completed) :
+        filter === 'not-completed' ? value = data.todos.filter(item => !item.completed) :
+            value = data.todos
+
+    const displayItem = value.slice(currentVisitedItems, currentVisitedItems + itemPerPage)
+        .map((item, index) => (
+            <Todo key={index}
+                items={item.items}
+                id={item.id}
+                completed={item.completed}
+                checkItem={checkItem}
+                editItem={editItem}
+                deleteItem={deleteItem} />
+        ))
 
     return (
         <>
@@ -87,9 +94,9 @@ export default function ItemList(
                 <div style={{ textAlign: 'center', paddingTop: '10px' }}> No todos yet!!</div> :
                 displayItem
             }
-            <Details item={data.todos} />
+
             <ReactPaginate
-                // pageCount={pageCount}
+                pageCount={pageCount}
                 onPageChange={handleChange}
                 containerClassName='pagination-div'
                 previousClassName='previous-button'
@@ -97,6 +104,7 @@ export default function ItemList(
                 disabledClassName='disabled-button'
                 breakClassName='break-label'
                 activeClassName='active-button' />
+            <Details setFilter={setFilter} />
         </>
 
     )

@@ -28,7 +28,7 @@ export default function Form() {
                     )
                     cache.writeQuery({
                         query: GET_ITEMS,
-                        data: { todos: [...existingItem.todos, newItem] }
+                        data: { todos: newItem }
                     })
                 },
                 onCompleted: () => {

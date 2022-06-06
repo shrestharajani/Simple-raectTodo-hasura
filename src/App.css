@@ -67,17 +67,25 @@ input:focus {
   position: sticky;
 }
 
-.item-data{
-  width: 30vw;
- }
-
-.edit{
-  padding-right: 10px;
+.details button{
+  cursor: pointer;
 }
 
 .items{
   display: flex;
+  flex-wrap: wrap;
   padding: 15px 0 0 20px;
+}
+
+.item-data{
+  flex: 5 1 200px;
+ }
+
+.edit{
+  flex: 1 1 10px;
+}
+.delete{
+  flex: 1 1 5px;
 }
 
 .items-item{

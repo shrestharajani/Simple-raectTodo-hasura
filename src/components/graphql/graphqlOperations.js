@@ -59,4 +59,13 @@ export const TOGGLE_COMPLETE = gql`
     }
 `
 
+// export const DISPLAY_COMPLETED = gql`
+//     query getCompleted($completed:Boolean!) {
+//         todos(where: {completed: {_eq: true}}) {
+//             id
+//             items
+//             completed
+//         }
+//     }
+// `
 

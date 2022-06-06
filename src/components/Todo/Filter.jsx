@@ -1,18 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function Details({ item }) {
-    const [filter, setFilter] = useState('all')
-
-    if (filter === 'completed') {
-        console.log("todo", item.filter(item => item.completed))
-        item.filter(item => item.completed)
-    }
-
-    if (filter === 'not-completed') {
-        console.log("todo not", item.filter(item => !item.completed))
-        item.filter(item => !item.completed)
-    }
-
+export default function Details({ setFilter }) {
     return (
         <div className='details'>
             <h4>Filter Todos</h4>
