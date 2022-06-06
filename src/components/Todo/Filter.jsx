@@ -5,19 +5,13 @@ export default function Details({ item }) {
 
     if (filter === 'completed') {
         console.log("todo", item.filter(item => item.completed))
-        return item.filter(item => item.completed)
+        item.filter(item => item.completed)
     }
 
     if (filter === 'not-completed') {
         console.log("todo not", item.filter(item => !item.completed))
-        return item.filter(item => !item.completed)
+        item.filter(item => !item.completed)
     }
-
-    const todoList = [];
-    item.forEach((todo, index) => {
-        console.log("fdkj", todo)
-        // todoList.push(<TodoItem key={index} index={index} todo={todo} />);
-    });
 
     return (
         <div className='details'>
